@@ -1,0 +1,33 @@
+{
+  "name": "vastra-mern",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "VASTRA — Men & Women clothing e-commerce. Pure MERN: MongoDB, Express, React, Node.js",
+  "scripts": {
+    "dev": "node server/index.js",
+    "start": "node server/index.js",
+    "build": "vite build",
+    "seed": "node server/seed.js",
+    "db:push": "node scripts/db-push.js",
+    "mongo:start": "node scripts/db-push.js",
+    "lint": "node scripts/lint.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.5",
+    "pdfkit": "^0.20.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
+  }
+}

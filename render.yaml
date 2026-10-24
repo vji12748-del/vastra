@@ -1,0 +1,18 @@
+# Render Blueprint — VASTRA (MERN)
+# Deploy: Render Dashboard → New + → Blueprint → select this repo → Apply
+# MONGO_URI ko apply ke baad dashboard me paste karna hai (Atlas connection string)
+services:
+  - type: web
+    name: vastra
+    runtime: node
+    plan: free
+    healthCheckPath: /api/health
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false   # Atlas URI — Render dashboard me manually paste karo
