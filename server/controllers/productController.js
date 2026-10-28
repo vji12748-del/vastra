@@ -54,13 +54,27 @@ export const getProduct = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id).lean();
   if (!product) throw httpError(404, "Product not found");
 
-  const related = await Product.find({
+  // Related = sirf SAME shop (MEN/WOMEN) — pehle same sub-category, phir same shop ke baaki products.
+  // Pehle $or se cross-shop items aa rahe the (men's jacket ke neeche women's jacket).
+  let related = await Product.find({
     _id: { $ne: product._id },
-    $or: [{ category: product.category }, { subCategory: product.subCategory }],
+    category: product.category,
+    subCategory: product.subCategory,
   })
     .sort({ isBestseller: -1, rating: -1 })
     .limit(4)
     .lean();
+
+  if (related.length < 4) {
+    const fill = await Product.find({
+      _id: { $nin: [product._id, ...related.map((r) => r._id)] },
+      category: product.category,
+    })
+      .sort({ isBestseller: -1, rating: -1 })
+      .limit(4 - related.length)
+      .lean();
+    related = [...related, ...fill];
+  }
 
   res.json({ product, related });
 });
