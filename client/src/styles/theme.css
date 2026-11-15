@@ -1,0 +1,172 @@
+/* ============================================================
+   VASTRA — THEME LAYER (Light ⇄ Dark mode)
+   Ye file index.css ke BAAD import hoti hai (main.jsx me),
+   isliye neeche ke rules index.css ke upar jeet-te hain.
+
+   Kaise kaam karta hai:
+   - Light theme: index.css jaisa hai waisa hi — kuch nahi badalta.
+   - Dark theme:  <html data-theme="dark"> hone par ye overrides
+                  chalte hain. Navbar ka sun/moon button ye attribute
+                  lagata/hatata hai aur localStorage me save karta hai.
+   - index.html me ek chhota script reload par theme pehle se laga
+                  deta hai — isliye dark users ko white flash nahi milta.
+
+   Dark palette: warm charcoal + ivory text + VASTRA gold (brand).
+   ============================================================ */
+
+/* ---------- dark palette — base variables override ---------- */
+[data-theme="dark"] {
+  --ivory: #14110c;   /* page background */
+  --ivory-2: #211c13; /* wells, tracks, image placeholders */
+  --card: #1e1a12;    /* cards / panels */
+  --ink: #f3ede0;     /* primary text (ab light) */
+  --ink-2: #d9d1c0;   /* secondary text */
+  --muted: #a89e8a;   /* muted text */
+  --gold-2: #d9b33a;  /* dark par gold thoda bright */
+  --gold-soft: rgba(201, 162, 39, 0.16);
+  --line: rgba(233, 222, 199, 0.13);
+  --shadow-1: 0 2px 12px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 16px 44px rgba(0, 0, 0, 0.5);
+}
+
+/* switch par smooth fade — sirf un elements par jinke paas pehle se
+   transition prop nahi hai (warna unki hover animations toot jaati) */
+body { transition: background-color 0.4s var(--ease), color 0.4s var(--ease); }
+.nav { transition: background-color 0.4s var(--ease); }
+.footer, .newsletter, .marquee, .account-hero, .panel, .summary,
+.acc, .modal, .drawer, .account-card { transition: background-color 0.4s var(--ease); }
+
+/* ---------- Task 26 pending fix — dropdown compact single-column
+   (dono themes me; index.css ke 480px double-column wale ko replace) ---------- */
+.nav-drop-menu { min-width: 240px; grid-template-columns: 1fr; }
+
+/* ---------- #fff hardcoded surfaces → card tone ---------- */
+[data-theme="dark"] .chip,
+[data-theme="dark"] .input,
+[data-theme="dark"] select.input,
+[data-theme="dark"] textarea.input,
+[data-theme="dark"] .nav-drop-menu,
+[data-theme="dark"] .usp,
+[data-theme="dark"] .testi-card,
+[data-theme="dark"] .select,
+[data-theme="dark"] .size-chip,
+[data-theme="dark"] .qty-stepper,
+[data-theme="dark"] .assure div,
+[data-theme="dark"] .acc,
+[data-theme="dark"] .cart-item,
+[data-theme="dark"] .summary,
+[data-theme="dark"] .step-circle,
+[data-theme="dark"] .panel,
+[data-theme="dark"] .pay-method,
+[data-theme="dark"] .account-card,
+[data-theme="dark"] .admin-logout,
+[data-theme="dark"] .admin-subtab,
+[data-theme="dark"] .stat-card,
+[data-theme="dark"] .table-wrap,
+[data-theme="dark"] .mini-btn,
+[data-theme="dark"] .top-product-row,
+[data-theme="dark"] .order-card,
+[data-theme="dark"] .tracker-dot,
+[data-theme="dark"] .search-box input,
+[data-theme="dark"] .review-card,
+[data-theme="dark"] .addr-card,
+[data-theme="dark"] .pdp-wish,
+[data-theme="dark"] .skel { background: var(--card); }
+
+[data-theme="dark"] .input::placeholder { color: #877e6d; }
+
+/* skeleton shimmer ka white flash → card tone */
+[data-theme="dark"] .skel .skel-media,
+[data-theme="dark"] .skel .skel-line {
+  background: linear-gradient(90deg, var(--ivory-2) 25%, var(--card) 40%, var(--ivory-2) 60%);
+  background-size: 900px 100%;
+}
+
+/* order-id pill (order success page) */
+[data-theme="dark"] .success-wrap .order-id { background: var(--card); }
+
+/* ---------- navbar ---------- */
+[data-theme="dark"] .nav { background: rgba(16, 13, 9, 0.82); }
+[data-theme="dark"] .nav-user { background: rgba(243, 237, 224, 0.08); }
+[data-theme="dark"] .nav-user:hover { color: #16130f; }
+[data-theme="dark"] .nav-user:hover .nav-user-name { color: #16130f; }
+
+/* ---------- "ink" buttons/pills — dark me background apne aap light ho
+   jata hai (--ink ab light hai); sirf text color theek karna hai ---------- */
+[data-theme="dark"] .btn-dark { color: #16130f; }
+[data-theme="dark"] .btn-dark:hover { background: #fffdf4; color: #16130f; }
+[data-theme="dark"] .btn-outline:hover { color: #16130f; }
+[data-theme="dark"] .chip.active { color: #16130f; }
+[data-theme="dark"] .size-chip.active { color: #16130f; }
+[data-theme="dark"] .admin-subtab.active { color: #16130f; }
+[data-theme="dark"] .inv-btn:hover { color: #16130f; }
+
+/* ---------- deep dark surfaces — jo pehle bhi dark the wahi rahenge
+   (halka sa tone, taaki page bg se alag dikhe) ---------- */
+[data-theme="dark"] .marquee,
+[data-theme="dark"] .newsletter,
+[data-theme="dark"] .account-hero,
+[data-theme="dark"] .collection-banner,
+[data-theme="dark"] .video-tile { background: #17130d; }
+[data-theme="dark"] .footer { background: #0f0d09; }
+[data-theme="dark"] .toast { background: #201c14; }
+[data-theme="dark"] .admin-logout { border-color: rgba(224, 82, 82, 0.4); color: #ef8f8f; }
+
+/* account-hero dark hi rehta hai — active tab light karo (pehle se readable) */
+[data-theme="dark"] .account-tab.active { background: #f3ede0; color: #16130f; }
+
+/* ---------- status badges — pastel → dark translucent ---------- */
+[data-theme="dark"] .st-PLACED { background: rgba(217, 179, 58, 0.12); color: #e5c05a; }
+[data-theme="dark"] .st-PACKED { background: rgba(91, 116, 224, 0.18); color: #9fb0f5; }
+[data-theme="dark"] .st-SHIPPED { background: rgba(59, 154, 209, 0.18); color: #7cc0ec; }
+[data-theme="dark"] .st-OUT_FOR_DELIVERY { background: rgba(137, 99, 214, 0.18); color: #b39cec; }
+[data-theme="dark"] .st-DELIVERED { background: rgba(62, 196, 109, 0.14); color: #6fd88f; }
+[data-theme="dark"] .st-CANCELLED { background: rgba(224, 82, 82, 0.16); color: #ef8f8f; }
+
+/* ---------- green/red accents — dark par thoda bright ---------- */
+[data-theme="dark"] .form-error,
+[data-theme="dark"] .stock-note,
+[data-theme="dark"] .coupon-applied button { color: #ef8f8f; }
+[data-theme="dark"] .form-success,
+[data-theme="dark"] .price-off,
+[data-theme="dark"] .sum-row .green { color: #6fd88f; }
+[data-theme="dark"] .link-danger { color: #e05252; }
+[data-theme="dark"] .coupon-applied { background: rgba(62, 196, 109, 0.1); border-color: rgba(62, 196, 109, 0.45); color: #6fd88f; }
+[data-theme="dark"] .success-check { background: rgba(62, 196, 109, 0.12); }
+[data-theme="dark"] .mini-btn.danger:hover { border-color: #e05252; color: #ef8f8f; background: rgba(224, 82, 82, 0.12); }
+[data-theme="dark"] .pdp-wish.active { border-color: #e05252; color: #ef8f8f; background: rgba(224, 82, 82, 0.12); }
+[data-theme="dark"] .pdp-wish.active svg { fill: #e05252; }
+
+/* ---------- invoice card ---------- */
+[data-theme="dark"] .invoice-card { background: #201b12; }
+[data-theme="dark"] .invoice-card.inv-due { background: #221a0e; }
+[data-theme="dark"] .inv-stamp.paid { background: rgba(62, 196, 109, 0.12); color: #6fd88f; border-color: rgba(62, 196, 109, 0.35); }
+[data-theme="dark"] .inv-stamp.due { background: rgba(217, 179, 58, 0.12); color: #e5c05a; border-color: rgba(217, 179, 58, 0.35); }
+[data-theme="dark"] .inv-btn.due { border-color: #e5c05a; color: #e5c05a; }
+[data-theme="dark"] .inv-btn.due:hover { background: #e5c05a; color: #16130f; }
+
+/* ---------- misc ---------- */
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: #3d3628; }
+[data-theme="dark"] .star-btn { color: #565043; }
+[data-theme="dark"] .alert-chip { background: rgba(217, 140, 20, 0.12); border-color: rgba(217, 140, 20, 0.4); color: #e5b05a; }
+[data-theme="dark"] .addr-plus { background: rgba(243, 237, 224, 0.08); }
+[data-theme="dark"] .addr-item { background: rgba(243, 237, 224, 0.05); }
+[data-theme="dark"] .color-dot { border-color: var(--ivory); }
+
+/* ---------- theme toggle (Navbar) ---------- */
+/* desktop: icon-btn styling hi kaafi hai; phone par nav me jagah nahi
+   (overflow fix kiya tha) — isliye desktop wala button mobile par chhupao,
+   toggle drawer ke andar bhi diya hai */
+@media (max-width: 768px) {
+  .theme-btn { display: none; }
+}
+
+/* drawer ke andar theme toggle row — .drawer a jaisi hi styling */
+.drawer-theme {
+  padding: 13px 14px; border-radius: 10px; font-weight: 500;
+  display: flex; align-items: center; gap: 12px; text-align: left;
+  background: none; border: none; color: inherit;
+  font-size: 1rem; font-family: inherit; cursor: pointer;
+  transition: all 0.25s;
+}
+.drawer-theme:hover { background: var(--gold-soft); color: var(--gold-2); transform: translateX(6px); }

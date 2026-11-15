@@ -2,6 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      /* saved theme ko paint se PEHLE lagao — dark mode users ko white flash na ho */
+      try {
+        if (localStorage.getItem("vastra-theme") === "dark") {
+          document.documentElement.dataset.theme = "dark";
+        }
+      } catch (e) {}
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="VASTRA — Premium men & women clothing. Shop tees, shirts, jeans, dresses, ethnic wear and more." />
     <title>VASTRA — Men & Women Fashion</title>

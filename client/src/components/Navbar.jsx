@@ -1,8 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth, useCart, useWishlist } from "../context/Store.jsx";
 import { SUBCATEGORIES } from "../data/media.js";
 import { IconBag, IconUser, IconSearch, IconMenu, IconX, IconHeart } from "./Icons.jsx";
+
+/* theme icons — Icons.jsx wale style me hi (stroke + currentColor) */
+function SunIcon() {
+  return (
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2.5M12 19.5V22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M2 12h2.5M19.5 12H22M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" />
+    </svg>
+  );
+}
+
+function MoonIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+    </svg>
+  );
+}
+
+/* index.html ka early script data-theme pehle se laga chuka hoga (flash-free boot) —
+   wahi initial value uthao taaki button aur site hamesha sync rahein */
+const initialTheme = () => {
+  try {
+    return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+  } catch {
+    return "light";
+  }
+};
 
 export default function Navbar() {
   const { count } = useCart();
@@ -10,6 +38,23 @@ export default function Navbar() {
   const { count: wishCount } = useWishlist();
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const [theme, setTheme] = useState(initialTheme);
+
+  /* toggle par <html> par data-theme lagta hai — theme.css isi se dark styles
+     apply karta hai; choice localStorage me save hoti hai (reload par yaad rehti hai) */
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    try {
+      localStorage.setItem("vastra-theme", theme);
+    } catch {
+      /* private browsing — ignore */
+    }
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
+
+  /* dropdown link click par turant top par le jao — naye products upar se dikhein */
+  const jumpTop = () => window.scrollTo({ top: 0, behavior: "instant" });
 
   return (
     <>
@@ -26,26 +71,35 @@ export default function Navbar() {
             <div className="nav-drop">
               <NavLink to="/men" className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}>Men</NavLink>
               <div className="nav-drop-menu" role="menu">
-                <div>
-                  <h4>Shop Men</h4>
-                  {SUBCATEGORIES.MEN.slice(0, 6).map((s) => (
-                    <Link key={s.value} to={`/men?sub=${s.value}`}>{s.label}</Link>
-                  ))}
-                </div>
-                <div>
-                  <h4>Shop Women</h4>
-                  {SUBCATEGORIES.WOMEN.slice(0, 6).map((s) => (
-                    <Link key={s.value} to={`/women?sub=${s.value}`}>{s.label}</Link>
-                  ))}
-                </div>
+                <h4>Shop Men</h4>
+                {SUBCATEGORIES.MEN.map((s) => (
+                  <Link key={s.value} to={`/men?sub=${s.value}`} onClick={jumpTop}>{s.label}</Link>
+                ))}
               </div>
             </div>
 
-            <NavLink to="/women" className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}>Women</NavLink>
+            <div className="nav-drop">
+              <NavLink to="/women" className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}>Women</NavLink>
+              <div className="nav-drop-menu" role="menu">
+                <h4>Shop Women</h4>
+                {SUBCATEGORIES.WOMEN.map((s) => (
+                  <Link key={s.value} to={`/women?sub=${s.value}`} onClick={jumpTop}>{s.label}</Link>
+                ))}
+              </div>
+            </div>
+
             <NavLink to="/videos" className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}>Fashion Films</NavLink>
           </nav>
 
           <div className="nav-actions">
+            <button
+              className="icon-btn theme-btn"
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              title={theme === "dark" ? "Light mode" : "Dark mode"}
+              onClick={toggleTheme}
+            >
+              {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+            </button>
             <button className="icon-btn" aria-label="Search" onClick={() => navigate("/search")}>
               <IconSearch />
             </button>
@@ -89,6 +143,10 @@ export default function Navbar() {
             <Link to="/wishlist" onClick={() => setOpen(false)}>My Wishlist{wishCount > 0 ? ` (${wishCount})` : ""}</Link>
             <Link to="/account" onClick={() => setOpen(false)}>{user ? `Hi, ${user.name.split(" ")[0]}` : "Sign in / Sign up"}</Link>
             <Link to="/cart" onClick={() => setOpen(false)}>Bag ({count})</Link>
+            <button className="drawer-theme" onClick={toggleTheme} aria-label="Toggle theme">
+              {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+              <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
+            </button>
           </aside>
         </>
       )}
