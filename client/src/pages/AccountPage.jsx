@@ -3,7 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { useAuth, useToast } from "../context/Store.jsx";
 import AdminDashboard from "../components/AdminDashboard.jsx";
 import ProfilePanels from "../components/ProfilePanels.jsx";
-import { IconUser, IconLock, IconShield, IconChart, IconArrowRight } from "../components/Icons.jsx";
+import { IconUser, IconLock, IconShield, IconArrowRight } from "../components/Icons.jsx";
 
 const TABS = [
   { id: "signup", label: "Sign Up", icon: <IconUser size={16} /> },
@@ -210,13 +210,6 @@ export default function AccountPage({ initialTab = "signup" }) {
               <button type="submit" className="btn btn-dark btn-block btn-lg btn-shine" disabled={busy}>
                 {busy ? "Signing in…" : "Sign In"}
               </button>
-              <div className="admin-hint">
-                <IconShield size={17} />
-                <span>
-                  Admin? <b>admin@vastra.com</b> / <b>admin123</b> works here too —
-                  or use the dedicated Admin Portal tab for the full console.
-                </span>
-              </div>
               <p className="form-success" style={{ textAlign: "center", marginTop: 14 }}>
                 New to VASTRA?{" "}
                 <button type="button" className="link-slide" style={{ color: "var(--gold-2)", fontWeight: 600 }} onClick={() => setTab("signup")}>
@@ -243,13 +236,6 @@ export default function AccountPage({ initialTab = "signup" }) {
               <button type="submit" className="btn btn-dark btn-block btn-lg btn-shine" disabled={busy}>
                 {busy ? "Verifying…" : "Unlock Admin Console"}
               </button>
-              <div className="admin-hint">
-                <IconChart size={17} />
-                <span>
-                  <b>Demo credentials:</b> admin@vastra.com / admin123 — you&apos;ll get live revenue,
-                  order and product controls after sign-in.
-                </span>
-              </div>
             </form>
           )}
         </div>
