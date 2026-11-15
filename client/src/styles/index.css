@@ -1242,3 +1242,20 @@ textarea.input { resize: vertical; min-height: 90px; }
   .addr-cards { grid-template-columns: 1fr; }
   .review-date { display: none; }
 }
+
+/* Floating scroll-to-top button (sab pages par, dono themes me) */
+.scroll-top-btn {
+  position: fixed; right: 18px; bottom: 18px; z-index: 90;
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid rgba(22, 19, 15, 0.18);
+  background: var(--gold); color: #16130f;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; padding: 0;
+  opacity: 0; visibility: hidden; transform: translateY(14px);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), visibility 0.3s;
+  box-shadow: var(--shadow-gold);
+}
+.scroll-top-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
+.scroll-top-btn:hover { background: var(--gold-2); transform: translateY(-3px); }
+.scroll-top-btn:active { transform: translateY(0); }
+@media (max-width: 640px) { .scroll-top-btn { right: 14px; bottom: 14px; width: 42px; height: 42px; } }

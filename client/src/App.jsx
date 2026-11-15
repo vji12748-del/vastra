@@ -13,6 +13,7 @@ import OrdersPage from "./pages/OrdersPage.jsx";
 import WishlistPage from "./pages/WishlistPage.jsx";
 import SearchPage from "./pages/SearchPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
+import ScrollTopButton from "./components/ScrollTopButton.jsx";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -32,6 +33,7 @@ function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <ScrollTopButton />
     </div>
   );
 }
