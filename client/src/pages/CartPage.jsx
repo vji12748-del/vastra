@@ -111,7 +111,7 @@ export default function CartPage() {
             <form className="coupon-box" onSubmit={applyCoupon}>
               <input
                 className="input"
-                placeholder="Enter coupon code"
+               
                 value={code}
                 onChange={(e) => setCode(e.target.value.toUpperCase())}
                 aria-label="Coupon code"

@@ -371,34 +371,34 @@ export default function CheckoutPage() {
                 <div className="form-row">
               <div className="field">
                 <label htmlFor="fullName">Full Name</label>
-                <input id="fullName" className="input" value={addr.fullName} onChange={set("fullName")} placeholder="Enter your full name" />
+                <input id="fullName" className="input" value={addr.fullName} onChange={set("fullName")} />
               </div>
               <div className="field">
                 <label htmlFor="phone">Mobile Number</label>
-                <input id="phone" className="input" value={addr.phone} onChange={set("phone")} placeholder="Enter 10-digit mobile number" maxLength={10} inputMode="numeric" />
+                <input id="phone" className="input" value={addr.phone} onChange={set("phone")} maxLength={10} inputMode="numeric" />
               </div>
             </div>
             <div className="field">
               <label htmlFor="line1">Address Line 1</label>
-              <input id="line1" className="input" value={addr.line1} onChange={set("line1")} placeholder="Enter house no, building, street" />
+              <input id="line1" className="input" value={addr.line1} onChange={set("line1")} />
             </div>
             <div className="field">
               <label htmlFor="line2">Address Line 2 (optional)</label>
-              <input id="line2" className="input" value={addr.line2} onChange={set("line2")} placeholder="Enter area, landmark (optional)" />
+              <input id="line2" className="input" value={addr.line2} onChange={set("line2")} />
             </div>
             <div className="form-row">
               <div className="field">
                 <label htmlFor="city">City</label>
-                <input id="city" className="input" value={addr.city} onChange={set("city")} placeholder="Enter city" />
+                <input id="city" className="input" value={addr.city} onChange={set("city")} />
               </div>
               <div className="field">
                 <label htmlFor="state">State</label>
-                <input id="state" className="input" value={addr.state} onChange={set("state")} placeholder="Enter state" />
+                <input id="state" className="input" value={addr.state} onChange={set("state")} />
               </div>
             </div>
             <div className="field" style={{ maxWidth: 220 }}>
               <label htmlFor="pincode">Pincode</label>
-              <input id="pincode" className="input" value={addr.pincode} onChange={set("pincode")} placeholder="Enter 6-digit pincode" maxLength={6} inputMode="numeric" />
+              <input id="pincode" className="input" value={addr.pincode} onChange={set("pincode")} maxLength={6} inputMode="numeric" />
             </div>
                 {savedAddrs.length > 0 && (
                   <label className="save-addr-check">
@@ -439,7 +439,7 @@ export default function CheckoutPage() {
                       <div className="field">
                         <label htmlFor="cardNo">Card Number</label>
                         <input
-                          id="cardNo" className="input" inputMode="numeric" placeholder="Enter 16-digit card number" maxLength={19}
+                          id="cardNo" className="input" inputMode="numeric" maxLength={19}
                           value={card.number}
                           onChange={(e) => {
                             const digits = e.target.value.replace(/\D/g, "").slice(0, 16);
@@ -449,13 +449,13 @@ export default function CheckoutPage() {
                       </div>
                       <div className="field">
                         <label htmlFor="cardName">Name on Card</label>
-                        <input id="cardName" className="input" value={card.name} onChange={(e) => setCard((c) => ({ ...c, name: e.target.value }))} placeholder="Enter name on card" />
+                        <input id="cardName" className="input" value={card.name} onChange={(e) => setCard((c) => ({ ...c, name: e.target.value }))} />
                       </div>
                       <div className="form-row">
                         <div className="field">
                           <label htmlFor="cardExp">Expiry (MM/YY)</label>
                           <input
-                            id="cardExp" className="input" placeholder="Enter MM/YY" maxLength={5} inputMode="numeric"
+                            id="cardExp" className="input" maxLength={5} inputMode="numeric"
                             value={card.expiry}
                             onChange={(e) => {
                               let v = e.target.value.replace(/\D/g, "").slice(0, 4);
@@ -466,7 +466,7 @@ export default function CheckoutPage() {
                         </div>
                         <div className="field">
                           <label htmlFor="cardCvv">CVV</label>
-                          <input id="cardCvv" className="input" type="password" placeholder="Enter CVV" maxLength={4} inputMode="numeric" value={card.cvv} onChange={(e) => setCard((c) => ({ ...c, cvv: e.target.value.replace(/\D/g, "") }))} />
+                          <input id="cardCvv" className="input" type="password" maxLength={4} inputMode="numeric" value={card.cvv} onChange={(e) => setCard((c) => ({ ...c, cvv: e.target.value.replace(/\D/g, "") }))} />
                         </div>
                       </div>
                     </div>
@@ -476,7 +476,7 @@ export default function CheckoutPage() {
                     <div className="pay-subform">
                       <div className="field">
                         <label htmlFor="upiId">Your UPI ID</label>
-                        <input id="upiId" className="input" placeholder="Enter UPI ID (name@bank)" value={upi} onChange={(e) => setUpi(e.target.value)} />
+                        <input id="upiId" className="input" value={upi} onChange={(e) => setUpi(e.target.value)} />
                       </div>
                       <p className="mini-note">You&apos;ll receive a collect request on your UPI app.</p>
                     </div>

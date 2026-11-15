@@ -239,7 +239,7 @@ export default function HomePage() {
           <form className="newsletter-form" onSubmit={subscribe}>
             <input
               type="email"
-              placeholder="Enter your email"
+             
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               aria-label="Email address"

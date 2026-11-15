@@ -46,7 +46,7 @@ export default function SearchPage() {
             ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Enter product name or category…"
+           
             aria-label="Search products"
           />
           <button type="submit" className="search-submit" aria-label="Search"><IconSearch /></button>

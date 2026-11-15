@@ -118,7 +118,7 @@ export default function ReviewsSection({ product, onProductRated }) {
             <StarPicker value={form.rating} onChange={(rating) => setForm((f) => ({ ...f, rating }))} />
             <input
               className="input"
-              placeholder="Give it a short headline (optional)"
+             
               maxLength={120}
               value={form.title}
               onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))}
@@ -126,7 +126,7 @@ export default function ReviewsSection({ product, onProductRated }) {
             <textarea
               className="input"
               rows={3}
-              placeholder="How's the fabric, fit and finish? Share your experience…"
+             
               maxLength={1200}
               value={form.comment}
               onChange={(e) => setForm((f) => ({ ...f, comment: e.target.value }))}
