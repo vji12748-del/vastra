@@ -363,20 +363,20 @@ function ProductModal({ product, onClose, onSaved }) {
         <form onSubmit={save} noValidate>
           <div className="field">
             <label htmlFor="pName">Name</label>
-            <input id="pName" className="input" value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} placeholder="Enter product name" />
+            <input id="pName" className="input" value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} />
           </div>
           <div className="field">
             <label htmlFor="pDesc">Description</label>
-            <textarea id="pDesc" className="input" value={f.description} onChange={(e) => setF({ ...f, description: e.target.value })} placeholder="Enter short product description…" />
+            <textarea id="pDesc" className="input" value={f.description} onChange={(e) => setF({ ...f, description: e.target.value })} />
           </div>
           <div className="form-row">
             <div className="field">
               <label htmlFor="pPrice">Price (₹)</label>
-              <input id="pPrice" className="input" inputMode="numeric" value={f.price} onChange={(e) => setF({ ...f, price: e.target.value.replace(/\D/g, "") })} placeholder="Enter price" />
+              <input id="pPrice" className="input" inputMode="numeric" value={f.price} onChange={(e) => setF({ ...f, price: e.target.value.replace(/\D/g, "") })} />
             </div>
             <div className="field">
               <label htmlFor="pMrp">Original MRP (₹)</label>
-              <input id="pMrp" className="input" inputMode="numeric" value={f.originalPrice} onChange={(e) => setF({ ...f, originalPrice: e.target.value.replace(/\D/g, "") })} placeholder="Enter MRP" />
+              <input id="pMrp" className="input" inputMode="numeric" value={f.originalPrice} onChange={(e) => setF({ ...f, originalPrice: e.target.value.replace(/\D/g, "") })} />
             </div>
           </div>
           <div className="form-row">
@@ -396,7 +396,7 @@ function ProductModal({ product, onClose, onSaved }) {
           </div>
           <div className="field">
             <label htmlFor="pImg">Image URL</label>
-            <input id="pImg" className="input" value={f.image} onChange={(e) => setF({ ...f, image: e.target.value })} placeholder="Enter image URL" />
+            <input id="pImg" className="input" value={f.image} onChange={(e) => setF({ ...f, image: e.target.value })} />
           </div>
           <div className="form-row">
             <div className="field">

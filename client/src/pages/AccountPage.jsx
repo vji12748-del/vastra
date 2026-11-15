@@ -161,16 +161,16 @@ export default function AccountPage({ initialTab = "signup" }) {
               <p className="sub">Join the circle — faster checkout, order tracking &amp; member prices.</p>
               <div className="field">
                 <label htmlFor="suName">Full Name</label>
-                <input id="suName" className="input" placeholder="Enter your full name" value={su.name} onChange={(e) => setSu({ ...su, name: e.target.value })} />
+                <input id="suName" className="input" value={su.name} onChange={(e) => setSu({ ...su, name: e.target.value })} />
               </div>
               <div className="field">
                 <label htmlFor="suEmail">Email</label>
-                <input id="suEmail" className="input" type="email" placeholder="Enter your email" value={su.email} onChange={(e) => setSu({ ...su, email: e.target.value })} />
+                <input id="suEmail" className="input" type="email" value={su.email} onChange={(e) => setSu({ ...su, email: e.target.value })} />
               </div>
               <div className="field">
                 <label htmlFor="suPw">Password</label>
                 <div className="password-wrap">
-                  <input id="suPw" className="input" type={showPw ? "text" : "password"} placeholder="Enter password (min. 6 characters)" value={su.password} onChange={(e) => setSu({ ...su, password: e.target.value })} />
+                  <input id="suPw" className="input" type={showPw ? "text" : "password"} value={su.password} onChange={(e) => setSu({ ...su, password: e.target.value })} />
                   <button type="button" className="password-toggle" onClick={() => setShowPw(!showPw)} aria-label="Toggle password visibility">
                     <IconLock size={16} />
                   </button>
@@ -178,7 +178,7 @@ export default function AccountPage({ initialTab = "signup" }) {
               </div>
               <div className="field">
                 <label htmlFor="suPw2">Confirm Password</label>
-                <input id="suPw2" className="input" type="password" placeholder="Enter password again" value={su.confirm} onChange={(e) => setSu({ ...su, confirm: e.target.value })} />
+                <input id="suPw2" className="input" type="password" value={su.confirm} onChange={(e) => setSu({ ...su, confirm: e.target.value })} />
               </div>
               {suErr && <p className="form-error" style={{ marginBottom: 12 }}>{suErr}</p>}
               <button type="submit" className="btn btn-dark btn-block btn-lg btn-shine" disabled={busy}>
@@ -200,11 +200,11 @@ export default function AccountPage({ initialTab = "signup" }) {
               <p className="sub">Sign in to track orders, manage your bag and check out faster.</p>
               <div className="field">
                 <label htmlFor="siEmail">Email</label>
-                <input id="siEmail" className="input" type="email" placeholder="Enter your email" value={si.email} onChange={(e) => setSi({ ...si, email: e.target.value })} />
+                <input id="siEmail" className="input" type="email" value={si.email} onChange={(e) => setSi({ ...si, email: e.target.value })} />
               </div>
               <div className="field">
                 <label htmlFor="siPw">Password</label>
-                <input id="siPw" className="input" type="password" placeholder="Enter your password" value={si.password} onChange={(e) => setSi({ ...si, password: e.target.value })} />
+                <input id="siPw" className="input" type="password" value={si.password} onChange={(e) => setSi({ ...si, password: e.target.value })} />
               </div>
               {siErr && <p className="form-error" style={{ marginBottom: 12 }}>{siErr}</p>}
               <button type="submit" className="btn btn-dark btn-block btn-lg btn-shine" disabled={busy}>
@@ -226,11 +226,11 @@ export default function AccountPage({ initialTab = "signup" }) {
               <p className="sub">Restricted area — store dashboard, products and order controls.</p>
               <div className="field">
                 <label htmlFor="adEmail">Admin Email</label>
-                <input id="adEmail" className="input" type="email" placeholder="Enter admin email" value={ad.email} onChange={(e) => setAd({ ...ad, email: e.target.value })} />
+                <input id="adEmail" className="input" type="email" value={ad.email} onChange={(e) => setAd({ ...ad, email: e.target.value })} />
               </div>
               <div className="field">
                 <label htmlFor="adPw">Admin Password</label>
-                <input id="adPw" className="input" type="password" placeholder="Enter admin password" value={ad.password} onChange={(e) => setAd({ ...ad, password: e.target.value })} />
+                <input id="adPw" className="input" type="password" value={ad.password} onChange={(e) => setAd({ ...ad, password: e.target.value })} />
               </div>
               {adErr && <p className="form-error" style={{ marginBottom: 12 }}>{adErr}</p>}
               <button type="submit" className="btn btn-dark btn-block btn-lg btn-shine" disabled={busy}>

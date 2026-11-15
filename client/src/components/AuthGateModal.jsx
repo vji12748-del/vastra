@@ -90,20 +90,20 @@ export default function AuthGateModal({ open, onClose, onAuthed }) {
           <form onSubmit={doSignup} noValidate>
             <div className="field">
               <label htmlFor="gSuName">Full Name</label>
-              <input id="gSuName" className="input" placeholder="Enter your full name" value={su.name} onChange={(e) => setSu({ ...su, name: e.target.value })} />
+              <input id="gSuName" className="input" value={su.name} onChange={(e) => setSu({ ...su, name: e.target.value })} />
             </div>
             <div className="field">
               <label htmlFor="gSuEmail">Email</label>
-              <input id="gSuEmail" className="input" type="email" placeholder="Enter your email" value={su.email} onChange={(e) => setSu({ ...su, email: e.target.value })} />
+              <input id="gSuEmail" className="input" type="email" value={su.email} onChange={(e) => setSu({ ...su, email: e.target.value })} />
             </div>
             <div className="form-row">
               <div className="field">
                 <label htmlFor="gSuPw">Password</label>
-                <input id="gSuPw" className="input" type="password" placeholder="Enter password (min. 6 characters)" value={su.password} onChange={(e) => setSu({ ...su, password: e.target.value })} />
+                <input id="gSuPw" className="input" type="password" value={su.password} onChange={(e) => setSu({ ...su, password: e.target.value })} />
               </div>
               <div className="field">
                 <label htmlFor="gSuPw2">Confirm</label>
-                <input id="gSuPw2" className="input" type="password" placeholder="Enter password again" value={su.confirm} onChange={(e) => setSu({ ...su, confirm: e.target.value })} />
+                <input id="gSuPw2" className="input" type="password" value={su.confirm} onChange={(e) => setSu({ ...su, confirm: e.target.value })} />
               </div>
             </div>
             {err && <p className="form-error" style={{ marginBottom: 12 }}>{err}</p>}
@@ -117,12 +117,12 @@ export default function AuthGateModal({ open, onClose, onAuthed }) {
           <form onSubmit={doSignIn} noValidate>
             <div className="field">
               <label htmlFor="gSiEmail">Email</label>
-              <input id="gSiEmail" className="input" type="email" placeholder="Enter your email" value={si.email} onChange={(e) => setSi({ ...si, email: e.target.value })} />
+              <input id="gSiEmail" className="input" type="email" value={si.email} onChange={(e) => setSi({ ...si, email: e.target.value })} />
             </div>
             <div className="field">
               <label htmlFor="gSiPw">Password</label>
               <div className="password-wrap">
-                <input id="gSiPw" className="input" type="password" placeholder="Enter your password" value={si.password} onChange={(e) => setSi({ ...si, password: e.target.value })} />
+                <input id="gSiPw" className="input" type="password" value={si.password} onChange={(e) => setSi({ ...si, password: e.target.value })} />
                 <button type="button" className="password-toggle" aria-label="Password field"><IconLock size={16} /></button>
               </div>
             </div>
