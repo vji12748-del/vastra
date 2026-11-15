@@ -52,10 +52,11 @@ export default function CollectionPage({ category }) {
     return () => { alive = false; };
   }, [category, sub, sort]);
 
-  /* sirf category switch (Men ↔ Women) par top par scroll karo — instant, smooth sweep nahi */
+  /* sirf category switch (Men ↔ Women) ya sub-category pick par top par scroll karo —
+     sub pick par banner hide hota hai, isliye fresh products upar se dikhna chahiye */
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
-  }, [category]);
+  }, [category, sub]);
 
   const pickSub = (value) => {
     if (value) setParams({ sub: value });
@@ -64,32 +65,35 @@ export default function CollectionPage({ category }) {
 
   return (
     <div ref={revealRef}>
-      {/* banner — ken-burns image behind + video fades in when ready (no black flash / buffering pops) */}
-      <section className="collection-banner">
-        <div className="banner-fallback" style={{ backgroundImage: `url(${banner.fallback})` }} />
-        {!isMobile && (
-          <video
-            src={banner.video}
-            poster={banner.fallback}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            onCanPlay={(e) => {
-              e.currentTarget.classList.add("is-ready");
-              e.currentTarget.closest(".collection-banner")?.classList.add("video-on");
-            }}
-            onError={(e) => { e.currentTarget.style.display = "none"; }}
-          />
-        )}
-        <div className="collection-banner-content container">
-          <h1>{banner.title}</h1>
-          <p>{banner.sub}</p>
-        </div>
-      </section>
+      {/* banner — sirf "All" view par dikhe; koi sub-category (T-Shirts, Jeans…) selected ho to
+          seedha products dikhein, hero/banner beech me na aaye */}
+      {!sub && (
+        <section className="collection-banner">
+          <div className="banner-fallback" style={{ backgroundImage: `url(${banner.fallback})` }} />
+          {!isMobile && (
+            <video
+              src={banner.video}
+              poster={banner.fallback}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              onCanPlay={(e) => {
+                e.currentTarget.classList.add("is-ready");
+                e.currentTarget.closest(".collection-banner")?.classList.add("video-on");
+              }}
+              onError={(e) => { e.currentTarget.style.display = "none"; }}
+            />
+          )}
+          <div className="collection-banner-content container">
+            <h1>{banner.title}</h1>
+            <p>{banner.sub}</p>
+          </div>
+        </section>
+      )}
 
-      <section className="section container" style={{ paddingTop: 34 }}>
+      <section className="section container" style={{ paddingTop: sub ? 44 : 34 }}>
         {/* toolbar */}
         <div className="toolbar">
           <div className="toolbar-chips" role="tablist" aria-label="Sub-categories">
