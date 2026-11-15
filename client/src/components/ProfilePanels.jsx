@@ -70,15 +70,15 @@ function ProfileCard({ user, refresh, toast }) {
         <form onSubmit={save} noValidate>
           <div className="field">
             <label htmlFor="pfName">Full Name</label>
-            <input id="pfName" className="input" value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} placeholder="Enter your full name" />
+            <input id="pfName" className="input" value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} />
           </div>
           <div className="field">
             <label htmlFor="pfEmail">Email</label>
-            <input id="pfEmail" className="input" type="email" value={f.email} onChange={(e) => setF({ ...f, email: e.target.value })} placeholder="Enter your email" />
+            <input id="pfEmail" className="input" type="email" value={f.email} onChange={(e) => setF({ ...f, email: e.target.value })} />
           </div>
           <div className="field">
             <label htmlFor="pfPhone">Phone</label>
-            <input id="pfPhone" className="input" value={f.phone} onChange={(e) => setF({ ...f, phone: e.target.value.replace(/\D/g, "").slice(0, 10) })} placeholder="Enter 10-digit mobile (optional)" inputMode="numeric" />
+            <input id="pfPhone" className="input" value={f.phone} onChange={(e) => setF({ ...f, phone: e.target.value.replace(/\D/g, "").slice(0, 10) })} inputMode="numeric" />
           </div>
           {err && <p className="form-error" style={{ marginBottom: 10 }}>{err}</p>}
           <div style={{ display: "flex", gap: 10 }}>
@@ -126,15 +126,15 @@ function PasswordCard({ toast }) {
       <form onSubmit={save} noValidate>
         <div className="field">
           <label htmlFor="pwCur">Current Password</label>
-          <input id="pwCur" className="input" type="password" value={p.current} onChange={(e) => setP({ ...p, current: e.target.value })} placeholder="Enter current password" />
+          <input id="pwCur" className="input" type="password" value={p.current} onChange={(e) => setP({ ...p, current: e.target.value })} />
         </div>
         <div className="field">
           <label htmlFor="pwNew">New Password</label>
-          <input id="pwNew" className="input" type="password" value={p.next} onChange={(e) => setP({ ...p, next: e.target.value })} placeholder="Enter new password (min. 6)" />
+          <input id="pwNew" className="input" type="password" value={p.next} onChange={(e) => setP({ ...p, next: e.target.value })} />
         </div>
         <div className="field">
           <label htmlFor="pwCon">Confirm New Password</label>
-          <input id="pwCon" className="input" type="password" value={p.confirm} onChange={(e) => setP({ ...p, confirm: e.target.value })} placeholder="Enter new password again" />
+          <input id="pwCon" className="input" type="password" value={p.confirm} onChange={(e) => setP({ ...p, confirm: e.target.value })} />
         </div>
         {err && <p className="form-error" style={{ marginBottom: 10 }}>{err}</p>}
         <button type="submit" className="btn btn-dark btn-shine" disabled={busy}>
@@ -261,31 +261,31 @@ function AddressCard({ user, toast }) {
             </div>
             <div className="field">
               <label htmlFor="afName">Full Name</label>
-              <input id="afName" className="input" value={f.fullName} onChange={(e) => setF({ ...f, fullName: e.target.value })} placeholder="Enter full name" />
+              <input id="afName" className="input" value={f.fullName} onChange={(e) => setF({ ...f, fullName: e.target.value })} />
             </div>
           </div>
           <div className="form-row">
             <div className="field">
               <label htmlFor="afPhone">Phone</label>
-              <input id="afPhone" className="input" value={f.phone} onChange={(e) => setF({ ...f, phone: e.target.value.replace(/\D/g, "").slice(0, 10) })} placeholder="Enter 10-digit mobile" inputMode="numeric" />
+              <input id="afPhone" className="input" value={f.phone} onChange={(e) => setF({ ...f, phone: e.target.value.replace(/\D/g, "").slice(0, 10) })} inputMode="numeric" />
             </div>
             <div className="field">
               <label htmlFor="afPin">Pincode</label>
-              <input id="afPin" className="input" value={f.pincode} onChange={(e) => setF({ ...f, pincode: e.target.value.replace(/\D/g, "").slice(0, 6) })} placeholder="Enter 6-digit pincode" inputMode="numeric" />
+              <input id="afPin" className="input" value={f.pincode} onChange={(e) => setF({ ...f, pincode: e.target.value.replace(/\D/g, "").slice(0, 6) })} inputMode="numeric" />
             </div>
           </div>
           <div className="field">
             <label htmlFor="afLine1">Address Line 1</label>
-            <input id="afLine1" className="input" value={f.line1} onChange={(e) => setF({ ...f, line1: e.target.value })} placeholder="Enter house no, building, street" />
+            <input id="afLine1" className="input" value={f.line1} onChange={(e) => setF({ ...f, line1: e.target.value })} />
           </div>
           <div className="form-row">
             <div className="field">
               <label htmlFor="afCity">City</label>
-              <input id="afCity" className="input" value={f.city} onChange={(e) => setF({ ...f, city: e.target.value })} placeholder="Enter city" />
+              <input id="afCity" className="input" value={f.city} onChange={(e) => setF({ ...f, city: e.target.value })} />
             </div>
             <div className="field">
               <label htmlFor="afState">State</label>
-              <input id="afState" className="input" value={f.state} onChange={(e) => setF({ ...f, state: e.target.value })} placeholder="Enter state" />
+              <input id="afState" className="input" value={f.state} onChange={(e) => setF({ ...f, state: e.target.value })} />
             </div>
           </div>
           {err && <p className="form-error" style={{ marginBottom: 10 }}>{err}</p>}
